@@ -9,6 +9,7 @@ int main(void)
 	int i;
 
 	for (i = 1; i < 100; i++)
+	{
 		if (i % 15 == 0)
 		{
 			printf("FizzBuzz ");
@@ -25,6 +26,7 @@ int main(void)
 		{
 			printf("%d ", i);
 		}
+	}
 	putchar('\n');
 	return (0);
 }
