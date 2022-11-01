@@ -1,1 +1,1 @@
-more task on pointers and strings
+ more task on pointers and strings
