@@ -1,56 +1,68 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
+#include <stdio.h>
+#include "main.h"
 
 /**
- * main - A proogram that prints the minimum number of coins to
- * make change for an amount of money
- * @argc: The arguements' counter
- * @argv: The argument's values
- * Return: 1 if the number of arguments passed is not exactly
- * or 0 in otherwise
- */
-int main(int argc, char **argv)
+* main - prints the min num of coins to make change for an amount of money
+* @argc: argument count
+* @argv: argument vector
+*
+* Return: int
+*/
+int main(int argc, char *argv[])
 {
-	int amount, coins = 0;
+unsigned int count = 0;
 
-	if (argc == 2)
-	{
-		amount = atoi(argv[1]);
-		if (amount < 0)
-		{
-			printf("%d\n", 0);
-			return (0);
-		}
-		if (amount % 25 >= 0)
-		{
-			coins += amount / 25;
-			amount = amount % 25;
-		}
-		if (amount % 10 >= 0)
-		{
-			coins += amount / 10;
-			amount = amount % 10;
-		}
-		if (amount % 5 >= 0)
-		{
-			coins += amount / 5;
-			amount = amount % 5;
-		}
-		if (amount % 2 >= 0)
-		{
-			coins += amount / 2;
-			amount = amount % 2;
-		}
+if (argc != 2)
+{
+printf("Error\n");
+return (1);
+}
+else if (atoi(argv[1]) < 0)
+{
+printf("%d\n", 0);
+return (0);
+}
+count = coin_count(count, atoi(argv[1]));
+printf("%d\n", count);
+return (0);
+}
 
-		if (amount % 1 >= 0)
-			coins += amount;
-		printf("%d\n", coins);
-		return (0);
-	}
-	else
-	{
-		printf("Error\n");
-		return (1);
-	}
+/**
+* coin_count - counts the min coins needed for change
+* @count: int to count coins
+* @num: argv[1] changed to int
+*
+* Return: int
+*/
+unsigned int coin_count(unsigned int count, int num)
+{
+unsigned int sum = 0;
+
+while (!(sum + 25 > (unsigned int)num))
+{
+sum += 25;
+count++;
+}
+while (!(sum + 10 > (unsigned int)num))
+{
+sum += 10;
+count++;
+}
+while (!(sum + 5 > (unsigned int)num))
+{
+sum += 5;
+count++;
+}
+while (!(sum + 2 > (unsigned int)num))
+{
+sum += 2;
+count++;
+}
+while (!(sum + 1 > (unsigned int)num))
+{
+sum += 1;
+count++;
+}
+return (count);
 }
