@@ -1,4 +1,4 @@
-#include <string.h>
+#include <stdlib.h>
 #include <stdio.h>
 
 /**
@@ -17,8 +17,8 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		return (1);
 	}
-	x = strtol(argv[1], NULL, 10);
-	y = strtol(argv[2], NULL, 10);
+	x = atoi(argv[1]);
+	y = atoi(argv[2]);
 	printf("%d\n", x * y);
 	return (0);
 }
