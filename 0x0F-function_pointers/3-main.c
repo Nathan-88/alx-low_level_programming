@@ -1,35 +1,31 @@
 #include "3-calc.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 /**
- * main - performs simple operations
- *
+ * main - program to perform simple operations
  * @argc: argument count
- * @argv: argument vector
- * Return: int
+ * @argv: array of arguments
+ * Return: exits 0 normally, 98 on argc error, 99 on illegal operator
  */
 int main(int argc, char *argv[])
 {
-	int a, b, res;
+	int (*func)(int, int);
 
 	if (argc != 4)
 	{
 		printf("Error\n");
-		return (98);
+		exit(98);
 	}
-	a = atoi(argv[1]);
-	b = atoi(argv[3]);
-	if (!get_op_func(argv[2]) || argv[2][1] != '\0')
-	{
-		printf("Error\n");
-		return (99);
-	}
-	if (b == 0 && (*argv[2] == '/' || *argv[2] == '%'))
-	{
-		printf("Error\n");
-		return (100);
-	}
-	res = get_op_func(argv[2])(a, b);
-	printf("%d\n", res);
-	return (0);
 
+	func = get_op_func(argv[2]);
+	if (func == NULL)
+	{
+		printf("Error\n");
+		exit(99);
+	}
+
+	printf("%d\n", func(atoi(argv[1]), atoi(argv[3])));
+	return (0);
 }
