@@ -1,5 +1,4 @@
 #include <stdlib.h>
-
 /**
  * *array_range - creates an array of integers and stores numbers min to max,
  * both inclusive in the array
